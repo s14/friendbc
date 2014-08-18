@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
@@ -5,6 +7,12 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
+
+    url = "https://graph.facebook.com/v2.1/me/home?limit=200&access_token=#{current_user.facebook_access_token}"
+
+    raw_data = open(url).read
+    parsed_data = JSON.parse(raw_data)
+    @posts = parsed_data["data"]
   end
 
   # GET /posts/1
