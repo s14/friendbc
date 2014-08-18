@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :friends
 
-  resources :comments
+  resources :friends
 
   resources :posts
 
