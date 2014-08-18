@@ -9,3 +9,10 @@ parsed_data = JSON.parse(raw_data)
 posts = parsed_data["data"]
 
 puts posts.to_yaml
+
+# Go through each post
+#   If the post is a video
+#     If we don't already have that post saved
+#        Save the post
+#        Save any comments (if we don't have them already)
+#        Save any likes (if we don't have them already)
