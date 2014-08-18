@@ -1,7 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'open-uri'
+
+user = User.first
+
+url = "https://graph.facebook.com/v2.1/me/home?limit=200&access_token=#{user.facebook_access_token}"
+
+raw_data = open(url).read
+parsed_data = JSON.parse(raw_data)
+posts = parsed_data["data"]
+
+puts posts.to_yaml
