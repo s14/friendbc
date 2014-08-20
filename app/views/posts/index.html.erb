@@ -19,9 +19,11 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.facebook_id %></td>
-        <td><%= post.friend %></td>
+        <td><%= post.friend.name %></td>
         <td><%= post.message %></td>
-        <td><%= post.link %></td>
+        <td>
+          <iframe width="560" height="315" src="//www.youtube.com/embed/<%= Rack::Utils.parse_nested_query(URI.parse(post.link).query)["v"] %>" frameborder="0" allowfullscreen></iframe>
+        </td>
         <td><%= post.name %></td>
         <td><%= post.description %></td>
         <td><%= post.picture %></td>
